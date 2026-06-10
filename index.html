@@ -1,0 +1,768 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dra. Itala Aguiar — Caminhos</title>
+    <meta
+      name="description"
+      content="Os caminhos disponíveis pra ti agora dentro do Método Águia. Escolhe por onde tu queres começar."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* =========================================================
+       VARIÁVEIS — edite aqui para mudar cores globalmente
+       ========================================================= */
+      :root {
+        /* Página */
+        --page-bg: #f0e8d8; /* bege claro do fundo geral */
+        --page-bg-top: #ede0c8; /* bege levemente mais escuro no topo */
+
+        /* Texto sobre fundo claro */
+        --text-dark: #2c1e10; /* título principal */
+        --text-mid: #5a3e28; /* subtítulo */
+        --text-muted: #554432; /* texto discreto / rodapé */
+
+        /* Dourado */
+        --gold: #c4933a; /* dourado principal (título seção, itálicos) */
+        --gold-light: #d4a84b; /* dourado mais claro */
+        --gold-btn-bg: #c9a96e; /* fundo dos botões CTA */
+        --gold-btn-text: #3a2005; /* texto dos botões */
+        --gold-btn-hover: #b8924a; /* hover botão */
+
+        /* Cards */
+        --card-radius: 14px;
+        --card-overlay-dark: rgba(
+          30,
+          14,
+          5,
+          0.52
+        ); /* overlay padrão (vermelho/marrom) */
+        --card-overlay-dark2: rgba(
+          20,
+          35,
+          20,
+          0.55
+        ); /* overlay verde-escuro (cards 2 e 4) */
+
+        /* Social */
+        --social-color: #9e8060;
+        --social-hover: #c4933a;
+        --social-border: #d4c0a0;
+
+        /* Divider */
+        --divider-color: #d4c0a0;
+
+        /* Tipografia */
+        --font-display: "Playfair Display", serif;
+        --font-body: "DM Sans", sans-serif;
+
+        /* Layout */
+        --max-w: 1080px;
+        --max-w-hero: 680px;
+      }
+
+      /* =========================================================
+       RESET + BASE
+       ========================================================= */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--page-bg);
+        color: var(--text-dark);
+        font-family: var(--font-body);
+        font-size: 15px;
+        line-height: 1.65;
+        min-height: 100vh;
+      }
+
+      /* =========================================================
+       WRAPPER GLOBAL
+       ========================================================= */
+      .page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 20px 72px;
+      }
+
+      /* =========================================================
+       HERO
+       ========================================================= */
+      .hero {
+        width: 100%;
+        max-width: var(--max-w-hero);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 60px 16px 0;
+      }
+
+      /* foto circular com anel dourado */
+      .hero__photo {
+        position: relative;
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        margin-bottom: 28px;
+        flex-shrink: 0;
+      }
+
+      .hero__photo::before {
+        content: "";
+        position: absolute;
+        inset: -3px;
+        border-radius: 50%;
+        background: conic-gradient(
+          var(--gold) 0deg,
+          var(--page-bg) 180deg,
+          var(--gold) 360deg
+        );
+        animation: spinRing 10s linear infinite;
+      }
+      .hero__photo::after {
+        content: "";
+        position: absolute;
+        inset: 0px;
+        border-radius: 50%;
+        background: var(--page-bg);
+        z-index: 1;
+      }
+      @keyframes spinRing {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .hero__photo-inner {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        overflow: hidden;
+        background: #c8b898;
+      }
+      .hero__photo-inner img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+      }
+      .hero__photo-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #c8b898, #b0987a);
+        color: #7a6040;
+        font-size: 10px;
+        text-align: center;
+        padding: 8px;
+        line-height: 1.5;
+      }
+
+      .hero__title {
+        font-family: var(--font-display);
+        font-size: clamp(1.7rem, 5vw, 2.4rem);
+        font-weight: 400;
+        line-height: 1.25;
+        color: var(--text-dark);
+        margin-bottom: 14px;
+      }
+      .hero__title em {
+        font-style: italic;
+        color: var(--gold);
+      }
+
+      .hero__desc {
+        font-size: 18px;
+        color: var(--text-mid);
+        font-weight: 300;
+        max-width: 400px;
+        margin: 0 auto 20px;
+      }
+
+      .hero__sig {
+        font-family: var(--font-display);
+        font-style: italic;
+        font-size: 40px;
+        color: var(--gold);
+        margin-bottom: 26px;
+      }
+
+      .hero__cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 0.76rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        text-decoration: none;
+        margin-bottom: 52px;
+        transition: color 0.22s;
+      }
+      .hero__cta:hover {
+        color: var(--gold);
+      }
+      .hero__cta svg {
+        animation: bob 2s ease-in-out infinite;
+      }
+      @keyframes bob {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(6px);
+        }
+      }
+
+      /* =========================================================
+       BARRA SOCIAL
+       ========================================================= */
+      .social {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 52px;
+      }
+      .social a {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid var(--social-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--social-color);
+        text-decoration: none;
+        transition:
+          color 0.22s,
+          border-color 0.22s,
+          box-shadow 0.22s;
+      }
+      .social a:hover {
+        color: var(--social-hover);
+        border-color: var(--gold-light);
+        box-shadow: 0 0 10px rgba(196, 147, 58, 0.2);
+      }
+
+      /* =========================================================
+       TÍTULO DA SEÇÃO CARDS
+       ========================================================= */
+      .section-title {
+        width: 100%;
+        max-width: var(--max-w);
+        font-family: var(--font-display);
+        font-size: 35px;
+        font-weight: 400;
+        font-style: normal;
+        color: var(--text-dark);
+        text-align: center;
+        margin-bottom: 32px;
+      }
+      .section-title strong {
+        font-style: normal;
+        font-weight: 600;
+        color: var(--gold);
+      }
+
+      /* =========================================================
+       GRADE DE CARDS  (2 colunas desktop, 1 coluna mobile)
+       ========================================================= */
+      .cards-grid {
+        width: 100%;
+        max-width: var(--max-w);
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      @media (max-width: 680px) {
+        .cards-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* =========================================================
+       CARD
+       ========================================================= */
+      .card {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        min-height: 320px;
+        border-radius: var(--card-radius);
+        overflow: hidden;
+        text-decoration: none;
+        color: #fff;
+        position: relative;
+        transition:
+          transform 0.28s,
+          box-shadow 0.28s;
+        /* imagem de fundo — substituir pelo src real */
+        background-color: #3d1f0d;
+        background-size: cover;
+        background-position: center top;
+      }
+      .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+      }
+
+      /* overlay escuro sobre a foto */
+      .card__overlay {
+        position: absolute;
+        inset: 0;
+        background: var(--card-overlay-dark);
+        transition: background 0.28s;
+        border-radius: var(--card-radius);
+      }
+      .card:hover .card__overlay {
+        background: rgba(30, 14, 5, 0.42);
+      }
+
+      /* variante verde/escuro (cards 2 e 4 no print) */
+      .card--teal {
+        background-color: #1a2e1a;
+      }
+      .card--teal .card__overlay {
+        background: var(--card-overlay-dark2);
+      }
+      .card--teal:hover .card__overlay {
+        background: rgba(20, 35, 20, 0.42);
+      }
+
+      /* conteúdo textual do card — fica na frente do overlay */
+      .card__content {
+        position: relative;
+        z-index: 1;
+        padding: 24px 24px 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      /* tag categoria */
+      .card__tag {
+        font-size: 0.65rem;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold-light);
+        margin-bottom: 8px;
+        line-height: 1.4;
+      }
+
+      /* título do card */
+      .card__title {
+        font-family: var(--font-display);
+        font-size: clamp(1.55rem, 3.5vw, 2rem);
+        font-weight: 500;
+        line-height: 1.15;
+        color: #fff;
+        margin-bottom: 12px;
+      }
+      .card__title em {
+        font-style: italic;
+        color: var(--gold-light);
+      }
+
+      /* descrição */
+      .card__desc {
+        font-size: 0.86rem;
+        color: rgba(255, 255, 255, 0.85);
+        font-weight: 300;
+        line-height: 1.6;
+        margin-bottom: 22px;
+      }
+      .card__desc strong {
+        color: var(--gold-light);
+        font-weight: 400;
+      }
+
+      /* botão CTA */
+      .card__btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--gold-btn-bg);
+        color: var(--gold-btn-text);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        padding: 11px 22px;
+        border-radius: 50px;
+        width: fit-content;
+        transition:
+          background 0.22s,
+          box-shadow 0.22s;
+      }
+      .card:hover .card__btn {
+        background: var(--gold-btn-hover);
+        box-shadow: 0 0 20px rgba(180, 130, 60, 0.45);
+      }
+
+      /* =========================================================
+       PLACEHOLDER de imagem de fundo (remover quando tiver foto real)
+       =========================================================
+      .card--placeholder-1 {
+        background: linear-gradient(160deg, #5c2010 0%, #3d1508 100%);
+      }
+      .card--placeholder-2 {
+        background: linear-gradient(160deg, #1e3020 0%, #0f1f10 100%);
+      }
+      .card--placeholder-3 {
+        background: linear-gradient(160deg, #3a1a0a 0%, #251005 100%);
+      }
+      .card--placeholder-4 {
+        background: linear-gradient(160deg, #152515 0%, #0a180a 100%);
+      }
+      .card--placeholder-5 {
+        background: linear-gradient(160deg, #4a1c0c 0%, #30100a 100%);
+      }
+      .card--placeholder-6 {
+        background: linear-gradient(160deg, #1c2e14 0%, #101c0a 100%);
+      }
+      */
+
+      /* =========================================================
+       DIVISOR
+       ========================================================= */
+      .divider {
+        width: 100%;
+        max-width: var(--max-w);
+        height: 1px;
+        background: var(--divider-color);
+        margin: 52px 0 36px;
+      }
+
+      /* =========================================================
+       RODAPÉ
+       ========================================================= */
+      .footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        text-align: center;
+      }
+      .footer__name {
+        font-family: var(--font-display);
+        font-size: 0.95rem;
+        font-weight: 400;
+        color: var(--text-muted);
+      }
+      .footer__legal {
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        line-height: 1.7;
+      }
+      .footer__legal a {
+        color: var(--text-muted);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+        transition: color 0.2s;
+      }
+      .footer__legal a:hover {
+        color: var(--gold);
+      }
+
+      /* =========================================================
+       ANIMAÇÕES DE ENTRADA
+       ========================================================= */
+      [data-anim] {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      [data-anim].visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page">
+      <!-- ============ HERO ============ -->
+      <section class="hero">
+        <div class="hero__photo" data-anim>
+          <div class="hero__photo-inner">
+            <img src="fotos/hero-itala.jpeg" alt="Dra. Itala Aguiar" />
+            <div class="hero__photo-placeholder">
+              Foto<br />Dra. Itala Aguiar
+            </div>
+          </div>
+        </div>
+
+        <h1 class="hero__title" data-anim>
+          Boas vindas, que bom que está <em>Aqui!</em><br />
+          Eu estava aguardando por você<em>...</em>
+        </h1>
+
+        <p class="hero__desc" data-anim>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi soluta
+          dignissimos totam vero quia nesciunt porro cum debitis id dolorem
+        </p>
+
+        <span class="hero__sig" data-anim>Dra. Itala Aguiar</span>
+
+        <a href="#cards" class="hero__cta" data-anim>
+          Ver os caminhos
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <polyline points="19 12 12 19 5 12" />
+          </svg>
+        </a>
+      </section>
+
+      <!-- ============ TÍTULO SEÇÃO ============ -->
+      <h2 class="section-title" id="cards" data-anim>
+        <strong>Conheça</strong> meus produtos abaixo:
+      </h2>
+
+      <!-- ============ GRADE DE CARDS ============ -->
+      <div class="cards-grid">
+        <!-- CARD 1 -->
+        <a
+          href="https://pins-draitalaaguiar.netlify.app"
+          target="_blank"
+          rel="noopener"
+          class="card card--placeholder-1"
+          data-anim
+          style="background-image: url(&quot;fotos/card-Pins.png&quot;)"
+        >
+          <div class="card__overlay"></div>
+          <div class="card__content">
+            <span class="card__tag">Programa de Mentoria</span>
+            <h3 class="card__title">
+              <em>PINS</em> - Programa de Implementação em Negócios de Saúde e
+              Terapias
+            </h3>
+            <p class="card__desc">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              <strong>Nisi soluta dignissimos</strong> totam vero quia nesciunt
+              porro cum debitis id dolorem voluptatem, ad enim esse
+              necessitatibus numquam, praesentium labore sunt ducimus.
+            </p>
+            <span class="card__btn"> Garantir minha candidatura &nbsp;→ </span>
+          </div>
+        </a>
+
+        <!-- CARD 2 -->
+        <a
+          href=""
+          target="_blank"
+          rel="noopener"
+          class="card card--teal card--placeholder-2"
+          data-anim
+          style="background-image: url(&quot;fotos/card-Sala.png&quot;)"
+        >
+          <div class="card__overlay"></div>
+          <div class="card__content">
+            <span class="card__tag">Aulas Semanais</span>
+            <h3 class="card__title"><em>Sala Secreta</em> Semanal</h3>
+            <p class="card__desc">
+              lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
+              <strong>volutate deleniti</strong>, corporis sed doloremque,
+              cumque quisquam quisquam voluptate deleniti, corporis
+            </p>
+            <span class="card__btn"> Quero Participar &nbsp;→ </span>
+          </div>
+        </a>
+
+        <!-- CARD 3 -->
+        <a
+          href=""
+          target="_blank"
+          rel="noopener"
+          class="card card--placeholder-3"
+          data-anim
+          style="background-image: url('fotos/card-Consultoria.png');"
+        >
+          <div class="card__overlay"></div>
+          <div class="card__content">
+            <span class="card__tag">Diretamente comigo</span>
+            <h3 class="card__title">
+              Consultoria de <em>Negócios de Saúde e Terapias</em>
+            </h3>
+            <p class="card__desc">
+              <strong>Lorem ipsum dolor sit</strong> amet consectetur
+              adipisicing elit. Doloribus voluptate deleniti, corporis sed
+              doloremque, cumque
+            </p>
+            <span class="card__btn"> Quero me candidatar &nbsp;→ </span>
+          </div>
+        </a>
+
+        <!-- CARD 4 — Ecossistema Guardiã (tom verde escuro) -->
+        <a
+          href="https://baralho-digging-eneagrama.netlify.app"
+          target="_blank"
+          rel="noopener"
+          class="card card--teal card--placeholder-4"
+          data-anim
+          style="background-image: url('fotos/card-Baralho.png');"
+        >
+          <div class="card__overlay"></div>
+          <div class="card__content">
+            <span class="card__tag">Baralho Terapêutico</span>
+            <h3 class="card__title">Baralho <em>Digging & Eneagrama</em></h3>
+            <p class="card__desc">
+              lorem ipsum dolor sit amet consectetur adipisicing elit.
+              <strong>Quasi quisquam</strong> voluptate deleniti, corporis sed
+              doloremque
+            </p>
+            <span class="card__btn"> Conhecer o Baralho &nbsp;→ </span>
+          </div>
+        </a>
+
+        <!-- CARD 5 — Projetos Especiais -->
+        <a
+          href="https://wa.link/khj0d6"
+          target="_blank"
+          rel="noopener"
+          class="card card--placeholder-5"
+          data-anim
+          style="background-image: url('fotos/card-WhatsApp.png');"
+        >
+          <div class="card__overlay"></div>
+          <div class="card__content">
+            <span class="card__tag">Fale Comigo</span>
+            <h3 class="card__title">Contato <em>WhatsApp</em></h3>
+            <p class="card__desc">
+              lorem ipsum <strong>dolor</strong> sit amet consectetur
+              adipisicing elit. Doloribus voluptate deleniti, corporis sed
+              doloremque, cumque quisquam quisquam voluptate deleniti, corporis
+              sed
+            </p>
+            <span class="card__btn"> Tirar Dúvidas &nbsp;→ </span>
+          </div>
+        </a>
+      </div>
+      <!-- /cards-grid -->
+
+      <div class="divider"></div>
+
+      <!-- ============ FOOTER ============ -->
+      <footer class="footer">
+        <nav
+          class="social"
+          style="margin-bottom: 0"
+          aria-label="Redes sociais rodapé"
+        >
+          <a
+            href="https://instagram.com/dra.italaaguiar"
+            target="_blank"
+            rel="noopener"
+            aria-label="Instagram"
+          >
+            <svg
+              width="17"
+              height="17"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <circle cx="12" cy="12" r="4.5" />
+              <circle
+                cx="17.5"
+                cy="6.5"
+                r="0.6"
+                fill="currentColor"
+                stroke="none"
+              />
+            </svg>
+          </a>
+
+          <a
+            href="https://wa.link/khj0d6"
+            target="_blank"
+            rel="noopener"
+            aria-label="WhatsApp"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-whatsapp"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"
+              />
+            </svg>
+          </a>
+        </nav>
+
+        <p class="footer__name">Dra. Itala Aguiar</p>
+        <p class="footer__legal">
+          Todos os direitos reservados a Instituto Sirius · CNPJ
+          99.999.999/0009-99<br />
+          Arquitetura e Design dessa página por
+          <a href="https://levymelo.netlify.app/" style="text-decoration: none;" target="_blank">
+            <strong>Levy Melo — DEV de Sistemas</strong></a
+        </p>
+      </footer>
+    </div>
+    <!-- /page -->
+
+    <script>
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              obs.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      document.querySelectorAll("[data-anim]").forEach((el, i) => {
+        el.style.transitionDelay = i * 0.06 + "s";
+        obs.observe(el);
+      });
+    </script>
+  </body>
+</html>
